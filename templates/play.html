@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Play
+{% endblock %}
+
+{% block main %}
+    <table class="tabs">
+        <thead>
+            <tr class="tabsrow">
+                <th class="tabshd">Location</th>
+                <th class="tabshd">Date and time</th>
+                <th class="tabshd">Length in minutes</th>
+                <th class="tabshd">Open spots</th>
+                <th class="tabshd">Creator</th>
+                <th class="tabshd">Register</th>
+            </tr>
+        </thead>
+        {% for g in games %}
+        <tbody>
+            {% if g[6] in list_of_games_future %}
+            <tr class="tabsrow">
+                <td class="tabshd"><a href="/view_game/{{g[6]}}">{{g[0]}}</a></td>
+                <td class="tabshd">{{g[1][8:10]}}/{{g[1][5:7]}}/{{g[1][2:4]}} {{g[1][11:16]}}</td>
+                <td class="tabshd">{{g[2]}}</td>
+                <td class="tabshd">{{g[5]}}/{{g[3]}}</td>
+                <td class="tabshd">{{g[4]}}</td>
+                <td class="tabshd">
+                    {% if g[6] in games_user_playing_in%}
+                        You're in!
+                    {% elif g[5]>0 %}
+                        <form action="/play" method="post">
+                            <input name="game_id" type="hidden" value="{{ g[6] }}">
+                            <button type="submit">Play</button>
+                        </form>
+                    {% else %}
+                        Full
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

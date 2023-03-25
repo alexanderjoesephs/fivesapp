@@ -1,0 +1,43 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+
+.tabs{
+  border-bottom: 1px solid #ddd;
+  margin: 0 auto;
+}
+
+.tabsrow{
+  border-bottom: 1px solid #ddd;
+}
+
+.tabshd{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.tabsrow:hover {background-color: #C1E1C1;} 
+
+.messagetable{
+  margin:0 auto;
+}
+
+.messagerow{
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+  padding-right: 20px;
+}

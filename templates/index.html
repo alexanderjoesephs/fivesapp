@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    {% if session["user_id"] %}
+        <p>Use the <a href="/play">play</a> feature to register for a game or the <a href="/create">create</a> feature to organise your own game.</p> 
+    {% else %}
+        <p>Fives lets users organise football games and register to play in other users' games. Register for an account and start playing today!</p>
+    {% endif %}
+{% endblock %}

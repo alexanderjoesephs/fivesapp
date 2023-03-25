@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create game
+{% endblock %}
+
+{% block main %}
+<form action="/create" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="location" name="location" placeholder="Location" type="text">
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" class="form-control mx-auto w-auto" id="number_players" name= "number_players" placeholder="Number of players" type="number">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" input id="date_and_time" name="date_and_time" placeholder="Date" type="datetime-local">
+    </div>
+
+    <div class="mb-3">
+        <select class="form-control mx-auto w-auto" name="length" id="length">
+            <option>Length of game</option>
+            <option value="30">Thirty minutes</option>
+            <option value="60">One hour</option>
+            <option value="90">Ninety minutes</option>
+            <option value="120">Two hours</option>
+        </select>
+    </div>
+
+    
+    
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+{% endblock %}

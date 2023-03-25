@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Games
+{% endblock %}
+
+{% block main %}
+
+{% if list_of_games_future != [] %}
+<p>Here are the games you're playing in</p>
+<table class="tabs">
+    <thead>
+        <tr class="tabsrow">
+            <th class="tabshd">Location</th>
+            <th class="tabshd">Date and time</th>
+            <th class="tabshd">Length in minutes</th>
+            <th class="tabshd">Creator</th>
+            <th class="tabshd"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for g in list_of_all_games %}
+            {%if g[5] not in list_of_games_past%}
+                <tr class="tabsrow">
+                    <td class="tabshd"><a href="/view_game/{{g[5]}}">{{g[1]}}</a></td>
+                    <td class="tabshd">{{g[2][8:10]}}/{{g[2][5:7]}}/{{g[2][2:4]}} {{g[2][11:16]}}</td>
+                    <td class="tabshd">{{g[3]}}</td>
+                    <td class="tabshd">{{g[4]}}</td>
+                    <th class="tabshd">
+                         
+                        <form action="/deregister" method ="post">
+                            <input name = "game_id_dereg" type="hidden" value="{{g[5]}}">
+                            <button type="submit">Deregister</button>
+                        </form>
+                        
+                    </th>
+                </tr>
+            {%endif%}
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<br>
+<br>
+<br>
+
+{% if list_of_games_past != [] %}
+<p>Here are the games you've already played in</p>
+<table class="tabs">
+    <thead>
+        <tr class="tabsrow">
+            <th class="tabshd">Location</th>
+            <th class="tabshd">Date and time</th>
+            <th class="tabshd">Length in minutes</th>
+            <th class="tabshd">Creator</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for g in list_of_all_games %}
+            {%if g[5] in list_of_games_past%}
+                <tr class="tabsrow">
+                    <td class="tabshd">{{g[1]}}</td>
+                    <td class="tabshd">{{g[2][8:10]}}/{{g[2][5:7]}}/{{g[2][2:4]}} {{g[2][11:16]}}</td>
+                    <td class="tabshd">{{g[3]}}</td>
+                    <td class="tabshd">{{g[4]}}</td>
+                </tr>
+            {%endif%}
+        {% endfor %}
+    </tbody>
+</table>
+{%endif%}
+
+{% if list_of_games_past == [] and list_of_games_future==[] %}
+    <p>Use the play button to start registering for some games today!</p>
+{% endif %}
+
+{% endblock %}
+    

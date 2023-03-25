@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    View game
+{% endblock %}
+
+{% block main %}
+<h3>Game details</h3>
+<br>
+<table class="tabs">
+    <thead>
+        <tr class="tabsrow">
+            <th class ="tabshd">Location</th>
+            <th class ="tabshd">Date and time</th>
+            <th class ="tabshd">Length in minutes</th>
+            <th class ="tabshd">Open spots</th>
+            <th class ="tabshd">Creator</th>
+            
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr class="tabsrow">
+            <td class ="tabshd">{{game_info[0]}}</td>
+            <td class ="tabshd">{{game_info[1][8:10]}}/{{game_info[1][5:7]}}/{{game_info[1][2:4]}} {{game_info[1][11:16]}}</td>
+            <td class ="tabshd">{{game_info[2]}}</td>
+            <td class ="tabshd">{{game_info[5]}}/{{game_info[3]}}</td>
+            <td class ="tabshd">{{game_info[4]}}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<h3>Players playing</h3>
+<table class="tabs">
+    <tbody>
+        {% for l in line_up_list %}
+        <tr class="tabsrow">
+            <td class="tabshd">{{l}}</td>
+        </tr>
+        {% endfor %}
+        {% for x in range(game_info[5]) %}
+        <tr class="tabsrow">
+            <td>Open spot</td>
+        </tr class="tabsrow">
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+{% if message_list !=[] %}
+<h3>Message board</h3>
+<table class="messagetable">
+    <tbody>
+        {% for m in message_list %}
+        <tr class="messagerow">
+            <td class="messagerow">{{m[0][8:10]}}/{{m[0][5:7]}} {{m[0][11:16]}}</td>
+            <td class="messagerow">{{m[1]}}</td>
+            <td style="width: 340px; padding-top: 15px; padding-bottom: 15px;">{{m[2]}}</td>
+        <tr>
+        {% endfor %}
+    </tbody>
+<table>
+<br>
+{% endif %}
+
+
+
+<h3>Post message</h3>
+<form action="/view_game/{{game_info[6]}}" method="post">
+    <textarea id="message" name="message" rows="4" cols="50"></textarea>
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+  
+{% endblock %}
